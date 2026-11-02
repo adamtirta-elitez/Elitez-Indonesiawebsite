@@ -162,3 +162,11 @@ See `.env.example` for all required variables.
 
 © 2026 PT Elit Indonesia Grup. All rights reserved.  
 Part of [Elitez Group of Companies](https://www.elitez.asia/).
+
+---
+
+## Forms (updated)
+
+The Hire Talent, Submit CV and Contact forms POST to `https://forms.elitez.ai/api/lead/id`
+(Cloudflare Worker `elitez-forms`, source: `~/Claude_coding/elitez-forms`, sends via Resend to adam.tirta@elitez.asia).
+The old Express `api/` folder was removed; it was not used by the page. CVs: PDF/DOC/DOCX, max 5MB.

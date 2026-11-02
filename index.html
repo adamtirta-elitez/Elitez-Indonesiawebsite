@@ -1192,7 +1192,7 @@ footer{background:#06101A;color:rgba(255,255,255,.58);padding:56px 24px 22px}
         </div>
         <div class="cv-perk">
           <div class="cv-perk-icon">🔗</div>
-          <div class="cv-perk-text"><strong>Synced to ats.elitez.ai</strong>Your application is added directly to our ATS so consultants across the Elitez Group can consider you for relevant roles.</div>
+          <div class="cv-perk-text"><strong>Synced to ats.elitez.ai</strong>Your application goes directly to the Elitez Indonesia team, who will consider you for relevant roles.</div>
         </div>
         <div class="cv-perk">
           <div class="cv-perk-icon">⚡</div>
@@ -1290,7 +1290,7 @@ footer{background:#06101A;color:rgba(255,255,255,.58);padding:56px 24px 22px}
           <div class="file-area" onclick="document.getElementById('cvFile').click()">
             <input type="file" id="cvFile" accept=".pdf,.doc,.docx" style="display:none" onchange="handleFile(this)">
             <div class="icon">📎</div>
-            <p><strong>Attach your CV</strong><br>PDF, DOC or DOCX · max 10MB<br><span style="font-size:.72rem">Sent to adam.tirta@elitez.asia and synced to ats.elitez.ai</span></p>
+            <p><strong>Attach your CV</strong><br>PDF, DOC or DOCX · max 5MB<br><span style="font-size:.72rem">Sent to adam.tirta@elitez.asia</span></p>
           </div>
           <div id="fileInfo" style="display:none;font-size:.76rem;color:#68D391;margin-top:7px"></div>
         </div>
@@ -1300,7 +1300,7 @@ footer{background:#06101A;color:rgba(255,255,255,.58);padding:56px 24px 22px}
       <div class="form-success" id="formSuccess">
         <div class="icon">✅</div>
         <h3>Message received!</h3>
-        <p>Adam Tirta and the Elitez Indonesia team will reply within one working day. Your CV has been synced to ats.elitez.ai.</p>
+        <p>Adam Tirta and the Elitez Indonesia team will reply within one working day. Your CV has been received.</p>
         <a href="https://ats.elitez.ai" target="_blank" class="btn btn-ghost" style="display:inline-flex;margin-top:14px">View ATS Portal →</a>
       </div>
     </div>
@@ -1342,7 +1342,7 @@ const FAQS = [
   ["How do you ensure compliance with Indonesian labour law?", "Our team is expert in UU Ketenagakerjaan, UU Cipta Kerja (UU 6/2023), BPJS regulations, PPh 21, THR, and regional UMK rules. We handle all statutory reporting and keep pace with regulatory changes."],
   ["Can temporary or contract staff convert to permanent?", "Yes. We support temp-to-perm transitions, allowing clients to evaluate a contractor's fit and performance before extending a permanent offer."],
   ["What industries do you recruit for in Indonesia?", "FMCG & Retail, Manufacturing, Technology & Digital, Healthcare & Life Sciences, Logistics & Supply Chain, Financial Services & Fintech, Energy & Natural Resources, and Hospitality & F&B."],
-  ["How are CV submissions connected to your ATS?", "CVs submitted through this page are sent directly to adam.tirta@elitez.asia and synced to ats.elitez.ai — our applicant tracking system — for seamless candidate management and client collaboration."],
+  ["How are CV submissions connected to your ATS?", "CVs submitted through this page are sent directly to adam.tirta@elitez.asia, and the Elitez Indonesia team reviews them personally."],
   ["How do I get started?", "Fill out the contact form on this page, email adam.tirta@elitez.asia, or message us on WhatsApp. A consultant will reach out within one working day."]
 ];
 const fl = document.getElementById('faqList');
@@ -1406,15 +1406,31 @@ function calcNet(){
 }
 calcNet();
 
+var LEAD_URL='https://forms.elitez.ai/api/lead/id';
+var MAX_CV=5*1024*1024;
+function leadBusy(btn,on){if(!btn)return;btn.disabled=on;if(on){btn.dataset.l=btn.innerHTML;btn.textContent='Sending…';}else if(btn.dataset.l){btn.innerHTML=btn.dataset.l;}}
+function readB64(f){return new Promise(function(ok,no){var r=new FileReader();r.onload=function(){ok(String(r.result).split(',')[1]||'');};r.onerror=no;r.readAsDataURL(f);});}
+function sendLead(btn,data,file,done){
+  if(file&&(!/\.(pdf|docx?)$/i.test(file.name)||file.size>MAX_CV)){alert('Please attach a PDF, DOC or DOCX file up to 5MB.');return;}
+  leadBusy(btn,true);
+  (file?readB64(file).then(function(b){data.file={name:file.name,type:file.type||'application/octet-stream',data:b};}):Promise.resolve())
+  .then(function(){return fetch(LEAD_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(data)});})
+  .then(function(r){return r.json();})
+  .then(function(o){leadBusy(btn,false);if(!o||!o.ok)throw 0;done();})
+  .catch(function(){leadBusy(btn,false);alert('Sorry, we could not send this. Please email adam.tirta@elitez.asia or WhatsApp us instead.');});
+}
 function submitHireTalent(){
   const name=document.getElementById('ht-name').value.trim();
   const email=document.getElementById('ht-email').value.trim();
   const company=document.getElementById('ht-company').value.trim();
   const service=document.getElementById('ht-service').value;
   if(!name||!email||!company||!service){alert('Please fill in your name, company, email and service needed.');return;}
-  document.getElementById('ht-confirm-email').textContent=email;
-  document.getElementById('hireTalentFormWrap').style.display='none';
-  document.getElementById('hireTalentSuccess').style.display='block';
+  const btn=event&&event.currentTarget;
+  sendLead(btn,{type:'Hire Talent enquiry',name:name,email:email,company:company,service:service,phone:document.getElementById('ht-phone').value.trim(),message:document.getElementById('ht-msg').value.trim(),page:location.href},null,function(){
+    document.getElementById('ht-confirm-email').textContent=email;
+    document.getElementById('hireTalentFormWrap').style.display='none';
+    document.getElementById('hireTalentSuccess').style.display='block';
+  });
 }
 function handleCvFile(i){
   const f=i.files[0];
@@ -1432,9 +1448,11 @@ function submitCv(){
   const file=document.getElementById('cvUpload').files[0];
   if(!name||!email||!phone||!industry){alert('Please fill in your name, email, phone and industry.');return;}
   if(!file){alert('Please attach your CV before submitting.');return;}
-  // In production: POST multipart/form-data to API → forwards to adam.tirta@elitez.asia + ATS
-  document.getElementById('cvFormWrap').style.display='none';
-  document.getElementById('cvSuccess').style.display='block';
+  const btn=event&&event.currentTarget;
+  sendLead(btn,{type:'Career / Job Application',name:name,email:email,phone:phone,industry:industry,location:document.getElementById('cv-location').value.trim(),jobTitle:document.getElementById('cv-jobtitle').value.trim(),service:document.getElementById('cv-type').value,message:document.getElementById('cv-note').value.trim(),page:location.href},file,function(){
+    document.getElementById('cvFormWrap').style.display='none';
+    document.getElementById('cvSuccess').style.display='block';
+  });
 }
 function handleFile(i){const f=i.files[0];if(f){document.getElementById('fileInfo').style.display='block';document.getElementById('fileInfo').textContent='✓ '+f.name+' ('+( f.size/1024/1024).toFixed(2)+' MB)';}}
 function submitForm(){
@@ -1442,8 +1460,11 @@ function submitForm(){
   const e=document.getElementById('f-email').value.trim();
   const t=document.getElementById('f-type').value;
   if(!n||!e||!t){alert('Please fill in your name, email, and service type.');return;}
-  document.getElementById('formWrap').style.display='none';
-  document.getElementById('formSuccess').style.display='block';
+  const btn=event&&event.currentTarget;
+  sendLead(btn,{type:'Contact enquiry',name:n,email:e,company:document.getElementById('f-co').value.trim(),phone:document.getElementById('f-tel').value.trim(),service:t,message:document.getElementById('f-msg').value.trim(),page:location.href},document.getElementById('cvFile').files[0]||null,function(){
+    document.getElementById('formWrap').style.display='none';
+    document.getElementById('formSuccess').style.display='block';
+  });
 }
 document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}});});
 </script>
