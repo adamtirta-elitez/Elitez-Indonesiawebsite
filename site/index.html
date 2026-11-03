@@ -5,8 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Elitez Indonesia | Recruitment, EOR, Outsourcing &amp; Payroll Solutions in Indonesia</title>
 <meta name="description" content="Elitez Indonesia — headhunting, executive search, outsourcing, EOR, and payroll parking in Indonesia. Located at Luminary Tower, Jakarta. Contact Adam Tirta.">
+<meta property="og:image" content="https://id.elitez.ai/og-image.png?v=1793663802">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="https://id.elitez.ai/favicon.png?v=1793663802">
+<meta property="og:description" content="Headhunting, executive search, outsourcing, EOR and payroll solutions in Indonesia — Elitez Indonesia, part of the Elitez Group.">
 <meta property="og:title" content="Elitez Indonesia | Recruitment, EOR &amp; HR Solutions">
 <meta property="og:url" content="https://id.elitez.ai">
+<link rel="canonical" href="https://id.elitez.ai/">
 <meta name="theme-color" content="#E8690A">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,14 +38,6 @@
   --sh: 0 4px 24px rgba(27,58,92,0.10);
   --sh-lg: 0 12px 48px rgba(27,58,92,0.16);
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --text: #F0F4F8; --surface: #0F1923; --white: #1A2535;
-    --border: #2D3748; --muted: #A0AEC0; --slate: #CBD5E0;
-    --orange-light: #2A1A08;
-    --sh: 0 4px 24px rgba(0,0,0,0.35); --sh-lg: 0 12px 48px rgba(0,0,0,0.45);
-  }
-}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:76px}
 body{font-family:var(--font);color:var(--text);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased}
@@ -54,7 +53,6 @@ body{font-family:var(--font);color:var(--text);background:var(--white);line-heig
 
 /* NAV */
 nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.97);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:72px;gap:20px}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) nav{background:rgba(20,33,50,0.97)}}
 .nav-logo{display:flex;align-items:center;gap:0;text-decoration:none}
 .nav-logo img{height:38px;width:auto;object-fit:contain}
 .nav-links{display:flex;gap:2px;align-items:center}
@@ -114,6 +112,23 @@ p{color:var(--slate);max-width:65ch}
 .hcard-icon{width:34px;height:34px;background:var(--orange);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0}
 .hcard-title{font-weight:600;color:#fff;font-size:.875rem}
 .hcard-desc{color:rgba(255,255,255,.5);font-size:.78rem;line-height:1.55;max-width:none}
+
+
+/* ---- light theme (rule 1a): light hero + topbar; mobile grid fix ---- */
+.topbar{background:#EEF3F9;color:#3A4A5E}.topbar a{color:#1B3A5C}
+.hero-wrap{background:#F4F7FB}
+.hero-bg{background:linear-gradient(135deg,#FFFFFF 0%,#EEF3F9 60%,#FFF3E8 100%)}
+.hero-grid{opacity:.06;background-image:linear-gradient(rgba(27,58,92,1) 1px,transparent 1px),linear-gradient(90deg,rgba(27,58,92,1) 1px,transparent 1px)}
+.hero-inner h1{color:var(--navy)}
+.hero-badge{background:rgba(232,105,10,.1);color:#B04F00;border-color:rgba(232,105,10,.35)}
+.hero-sub{color:#3A4A5E}
+.hero-stat .num{color:var(--navy)}.hero-stat .lbl{color:#5A6B80}
+.hcard{background:#fff;border:1px solid #D9E2EC;box-shadow:0 4px 18px rgba(27,58,92,.08)}
+.hcard:hover{background:#fff}
+.hcard-title{color:var(--navy)}.hcard-desc{color:#5A6B80}
+.hero-ctas .btn-ghost,.hero-ctas .btn-outline{color:var(--navy);border-color:rgba(27,58,92,.35);background:#fff}
+@media(max-width:1000px){.nav-ctas .btn{padding:8px 12px;font-size:.78rem}.nav-ctas{gap:6px}}
+@media(max-width:768px){[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr !important}}
 
 /* TICKER */
 .ticker-wrap{background:var(--orange);overflow:hidden;padding:11px 0}
@@ -1196,7 +1211,7 @@ footer{background:#06101A;color:rgba(255,255,255,.58);padding:56px 24px 22px}
         </div>
         <div class="cv-perk">
           <div class="cv-perk-icon">🔗</div>
-          <div class="cv-perk-text"><strong>Synced to ats.elitez.ai</strong>Your application is added directly to our ATS so consultants across the Elitez Group can consider you for relevant roles.</div>
+          <div class="cv-perk-text"><strong>Straight to our team</strong>Your application goes directly to the Elitez Indonesia team, who will consider you for relevant roles.</div>
         </div>
         <div class="cv-perk">
           <div class="cv-perk-icon">⚡</div>
@@ -1250,13 +1265,13 @@ footer{background:#06101A;color:rgba(255,255,255,.58);padding:56px 24px 22px}
             <div class="cv-file-info" id="cvFileInfo"></div>
           </div>
         </div>
-        <p class="cv-consent" style="margin-top:14px">By submitting, I consent to Elitez Indonesia (PT Elit Indonesia Grup) storing and processing my personal data to match me with suitable job opportunities, in accordance with UU Perlindungan Data Pribadi No. 27/2022. My CV will be synced to ats.elitez.ai.</p>
+        <p class="cv-consent" style="margin-top:14px">By submitting, I consent to Elitez Indonesia (PT Elit Indonesia Grup) storing and processing my personal data to match me with suitable job opportunities, in accordance with UU Perlindungan Data Pribadi No. 27/2022. My CV will be sent to the Elitez Indonesia team.</p>
         <button onclick="submitCv()" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:14px;padding:12px;font-size:.95rem">Submit My CV →</button>
       </div>
       <div class="cv-success" id="cvSuccess">
         <div class="s-icon">✅</div>
         <h3>CV received — thank you!</h3>
-        <p>Your CV has been sent to adam.tirta@elitez.asia and added to our ATS at ats.elitez.ai. A consultant will be in touch within 2–3 working days if there's a strong match.</p>
+        <p>Your CV has been sent to adam.tirta@elitez.asia. A consultant will be in touch within 2–3 working days if there's a strong match.</p>
         <a href="https://ats.elitez.ai" target="_blank" class="btn btn-ghost" style="display:inline-flex;margin-top:16px">View ATS Portal →</a>
       </div>
     </div>
@@ -1294,7 +1309,7 @@ footer{background:#06101A;color:rgba(255,255,255,.58);padding:56px 24px 22px}
           <div class="file-area" onclick="document.getElementById('cvFile').click()">
             <input type="file" id="cvFile" accept=".pdf,.doc,.docx" style="display:none" onchange="handleFile(this)">
             <div class="icon">📎</div>
-            <p><strong>Attach your CV</strong><br>PDF, DOC or DOCX · max 10MB<br><span style="font-size:.72rem">Sent to adam.tirta@elitez.asia and synced to ats.elitez.ai</span></p>
+            <p><strong>Attach your CV</strong><br>PDF, DOC or DOCX · max 5MB<br><span style="font-size:.72rem">Sent to adam.tirta@elitez.asia</span></p>
           </div>
           <div id="fileInfo" style="display:none;font-size:.76rem;color:#68D391;margin-top:7px"></div>
         </div>
@@ -1304,7 +1319,7 @@ footer{background:#06101A;color:rgba(255,255,255,.58);padding:56px 24px 22px}
       <div class="form-success" id="formSuccess">
         <div class="icon">✅</div>
         <h3>Message received!</h3>
-        <p>Adam Tirta and the Elitez Indonesia team will reply within one working day. Your CV has been synced to ats.elitez.ai.</p>
+        <p>Adam Tirta and the Elitez Indonesia team will reply within one working day. Your CV has been received.</p>
         <a href="https://ats.elitez.ai" target="_blank" class="btn btn-ghost" style="display:inline-flex;margin-top:14px">View ATS Portal →</a>
       </div>
     </div>
@@ -1346,7 +1361,7 @@ const FAQS = [
   ["How do you ensure compliance with Indonesian labour law?", "Our team is expert in UU Ketenagakerjaan, UU Cipta Kerja (UU 6/2023), BPJS regulations, PPh 21, THR, and regional UMK rules. We handle all statutory reporting and keep pace with regulatory changes."],
   ["Can temporary or contract staff convert to permanent?", "Yes. We support temp-to-perm transitions, allowing clients to evaluate a contractor's fit and performance before extending a permanent offer."],
   ["What industries do you recruit for in Indonesia?", "FMCG & Retail, Manufacturing, Technology & Digital, Healthcare & Life Sciences, Logistics & Supply Chain, Financial Services & Fintech, Energy & Natural Resources, and Hospitality & F&B."],
-  ["How are CV submissions connected to your ATS?", "CVs submitted through this page are sent directly to adam.tirta@elitez.asia and synced to ats.elitez.ai — our applicant tracking system — for seamless candidate management and client collaboration."],
+  ["How are CV submissions connected to your ATS?", "CVs submitted through this page are sent directly to adam.tirta@elitez.asia, and the Elitez Indonesia team reviews them personally."],
   ["How do I get started?", "Fill out the contact form on this page, email adam.tirta@elitez.asia, or message us on WhatsApp. A consultant will reach out within one working day."]
 ];
 const fl = document.getElementById('faqList');
@@ -1410,15 +1425,31 @@ function calcNet(){
 }
 calcNet();
 
+var LEAD_URL='https://forms.elitez.ai/api/lead/id';
+var MAX_CV=5*1024*1024;
+function leadBusy(btn,on){if(!btn)return;btn.disabled=on;if(on){btn.dataset.l=btn.innerHTML;btn.textContent='Sending…';}else if(btn.dataset.l){btn.innerHTML=btn.dataset.l;}}
+function readB64(f){return new Promise(function(ok,no){var r=new FileReader();r.onload=function(){ok(String(r.result).split(',')[1]||'');};r.onerror=no;r.readAsDataURL(f);});}
+function sendLead(btn,data,file,done){
+  if(file&&(!/\.(pdf|docx?)$/i.test(file.name)||file.size>MAX_CV)){alert('Please attach a PDF, DOC or DOCX file up to 5MB.');return;}
+  leadBusy(btn,true);
+  (file?readB64(file).then(function(b){data.file={name:file.name,type:file.type||'application/octet-stream',data:b};}):Promise.resolve())
+  .then(function(){return fetch(LEAD_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(data)});})
+  .then(function(r){return r.json();})
+  .then(function(o){leadBusy(btn,false);if(!o||!o.ok)throw 0;done();})
+  .catch(function(){leadBusy(btn,false);alert('Sorry, we could not send this. Please email adam.tirta@elitez.asia or WhatsApp us instead.');});
+}
 function submitHireTalent(){
   const name=document.getElementById('ht-name').value.trim();
   const email=document.getElementById('ht-email').value.trim();
   const company=document.getElementById('ht-company').value.trim();
   const service=document.getElementById('ht-service').value;
   if(!name||!email||!company||!service){alert('Please fill in your name, company, email and service needed.');return;}
-  document.getElementById('ht-confirm-email').textContent=email;
-  document.getElementById('hireTalentFormWrap').style.display='none';
-  document.getElementById('hireTalentSuccess').style.display='block';
+  const btn=event&&event.currentTarget;
+  sendLead(btn,{type:'Hire Talent enquiry',name:name,email:email,company:company,service:service,phone:document.getElementById('ht-phone').value.trim(),message:document.getElementById('ht-msg').value.trim(),page:location.href},null,function(){
+    document.getElementById('ht-confirm-email').textContent=email;
+    document.getElementById('hireTalentFormWrap').style.display='none';
+    document.getElementById('hireTalentSuccess').style.display='block';
+  });
 }
 function handleCvFile(i){
   const f=i.files[0];
@@ -1436,9 +1467,11 @@ function submitCv(){
   const file=document.getElementById('cvUpload').files[0];
   if(!name||!email||!phone||!industry){alert('Please fill in your name, email, phone and industry.');return;}
   if(!file){alert('Please attach your CV before submitting.');return;}
-  // In production: POST multipart/form-data to API → forwards to adam.tirta@elitez.asia + ATS
-  document.getElementById('cvFormWrap').style.display='none';
-  document.getElementById('cvSuccess').style.display='block';
+  const btn=event&&event.currentTarget;
+  sendLead(btn,{type:'Career / Job Application',name:name,email:email,phone:phone,industry:industry,location:document.getElementById('cv-location').value.trim(),jobTitle:document.getElementById('cv-jobtitle').value.trim(),service:document.getElementById('cv-type').value,message:document.getElementById('cv-note').value.trim(),page:location.href},file,function(){
+    document.getElementById('cvFormWrap').style.display='none';
+    document.getElementById('cvSuccess').style.display='block';
+  });
 }
 function handleFile(i){const f=i.files[0];if(f){document.getElementById('fileInfo').style.display='block';document.getElementById('fileInfo').textContent='✓ '+f.name+' ('+( f.size/1024/1024).toFixed(2)+' MB)';}}
 function submitForm(){
@@ -1446,8 +1479,11 @@ function submitForm(){
   const e=document.getElementById('f-email').value.trim();
   const t=document.getElementById('f-type').value;
   if(!n||!e||!t){alert('Please fill in your name, email, and service type.');return;}
-  document.getElementById('formWrap').style.display='none';
-  document.getElementById('formSuccess').style.display='block';
+  const btn=event&&event.currentTarget;
+  sendLead(btn,{type:'Contact enquiry',name:n,email:e,company:document.getElementById('f-co').value.trim(),phone:document.getElementById('f-tel').value.trim(),service:t,message:document.getElementById('f-msg').value.trim(),page:location.href},document.getElementById('cvFile').files[0]||null,function(){
+    document.getElementById('formWrap').style.display='none';
+    document.getElementById('formSuccess').style.display='block';
+  });
 }
 document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}});});
 </script>

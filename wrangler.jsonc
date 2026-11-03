@@ -1,0 +1,7 @@
+{
+  // id.elitez.ai -> static site in site/. Redeploy: source ~/.config/elitez/cloudflare.env; npx wrangler deploy
+  "name": "elitez-indonesia-site",
+  "compatibility_date": "2026-10-01",
+  "assets": { "directory": "site", "not_found_handling": "single-page-application" },
+  "routes": [{ "pattern": "id.elitez.ai", "custom_domain": true }]
+}
