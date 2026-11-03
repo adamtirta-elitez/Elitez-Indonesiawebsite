@@ -1,0 +1,11 @@
+name: notify-site-sync
+# When something is saved to main, tell the Elitez publisher to update the live website right away.
+# (A 5-minute safety net runs anyway.) No secrets here.
+on:
+  push:
+    branches: [main]
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - run: curl -fsS -m 20 -X POST https://forms.elitez.ai/hook/id || true
